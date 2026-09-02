@@ -1,47 +1,47 @@
-/**** START Static Vaultwarden changes ****/
-/* This combines all selectors extending it into one */
+/**** START 静态 Vaultwarden 修改 ****/
+/* 将所有继承该选择器的样式合并为一条规则 */
 %vw-hide {
   display: none !important;
 }
 
-/* This allows searching for the combined style in the browsers dev-tools (look into the head tag) */
+/* 这样可以在浏览器的开发者工具中通过 head 标签搜索到合并后的样式 */
 .vw-hide,
 head {
   @extend %vw-hide;
 }
 
-/* Hide the Subscription Page tab */
+/* 隐藏订阅页面标签 */
 bit-nav-item[route="settings/subscription"] {
   @extend %vw-hide;
 }
 
-/* Hide any link pointing to Free Bitwarden Families */
+/* 隐藏指向 Bitwarden 免费家庭版的所有链接 */
 a[href$="/settings/sponsored-families"] {
   @extend %vw-hide;
 }
 
-/* Hide the sso `Email` input field */
+/* 隐藏 SSO 登录中的「邮箱」输入框 */
 {{#if (not sso_enabled)}}
 .vw-email-sso {
   @extend %vw-hide;
 }
 {{/if}}
 
-/* Hide the default/continue `Email` input field */
+/* 隐藏默认/继续登录中的「邮箱」输入框 */
 {{#if sso_enabled}}
 .vw-email-continue {
   @extend %vw-hide;
 }
 {{/if}}
 
-/* Hide the `Continue` button on the login page */
+/* 隐藏登录页面的「继续」按钮 */
 {{#if sso_enabled}}
 .vw-continue-login {
   @extend %vw-hide;
 }
 {{/if}}
 
-/* Hide the `Enterprise Single Sign-On` button on the login page */
+/* 隐藏登录页面的「企业级单点登录」按钮 */
 {{#if (webver ">=2025.5.1")}}
 {{#if (not sso_enabled)}}
 .vw-sso-login {
@@ -54,11 +54,11 @@ app-root ng-component > form > div:nth-child(1) > div > button[buttontype="secon
 }
 {{/if}}
 
-/* Hide the `Log in with passkey` settings */
+/* 隐藏「使用 Passkey 登录」相关设置 */
 app-user-layout app-password-settings app-webauthn-login-settings {
   @extend %vw-hide;
 }
-/* Hide Log in with passkey on the login page */
+/* 隐藏登录页面上「使用 Passkey 登录」入口 */
 {{#if (webver ">=2025.5.1")}}
 .vw-passkey-login {
   @extend %vw-hide;
@@ -69,7 +69,7 @@ app-root ng-component > form > div:nth-child(1) > div > button[buttontype="secon
 }
 {{/if}}
 
-/* Hide the or text followed by the two buttons hidden above */
+/* 隐藏上述两个被隐藏按钮之间的「或」文字 */
 {{#if (webver ">=2025.5.1")}}
 {{#if (or (not sso_enabled) sso_only)}}
 .vw-or-text {
@@ -82,46 +82,46 @@ app-root ng-component > form > div:nth-child(1) > div:nth-child(3) > div:nth-chi
 }
 {{/if}}
 
-/* Hide the `Other` button on the login page */
+/* 隐藏登录页面的「其他」按钮 */
 {{#if (or (not sso_enabled) sso_only)}}
 .vw-other-login {
   @extend %vw-hide;
 }
 {{/if}}
 
-/* Hide Two-Factor menu in Organization settings */
+/* 隐藏组织设置中的两步登录菜单 */
 bit-nav-item[route="settings/two-factor"],
 a[href$="/settings/two-factor"] {
   @extend %vw-hide;
 }
 
-/* Hide organization plans */
+/* 隐藏组织套餐 */
 app-organization-plans > form > bit-section:nth-child(2) {
   @extend %vw-hide;
 }
 
-/* Hide Collection Management Form */
+/* 隐藏集合管理表单 */
 app-org-account form.ng-untouched:nth-child(5) {
   @extend %vw-hide;
 }
 
-/* Hide 'Member Access' Report Card from Org Reports */
+/* 隐藏组织报告中的「成员访问」报告卡片 */
 app-org-reports-home > app-report-list > div.tw-inline-grid > div:nth-child(6) {
   @extend %vw-hide;
 }
 
-/* Hide Device Verification form at the Two Step Login screen */
+/* 隐藏两步登录页面的设备验证表单 */
 app-security > app-two-factor-setup > form {
   @extend %vw-hide;
 }
 
-/* Hide unsupported Custom Role options */
+/* 隐藏不支持的自定义角色选项 */
 :is(bit-dialog, [bit-dialog]) div.tw-ml-4:has(bit-form-control input),
 :is(bit-dialog, [bit-dialog]) div.tw-col-span-4:has(input[formcontrolname*="access"], input[formcontrolname*="manage"]) {
   @extend %vw-hide;
 }
 
-/* Change collapsed menu icon to Vaultwarden */
+/* 将折叠菜单的图标替换为 Vaultwarden 图标 */
 bit-nav-logo bit-nav-item a:before {
   content: "";
   background-image: url("../images/icon-white.svg");
@@ -133,27 +133,27 @@ bit-nav-logo bit-nav-item a:before {
 bit-nav-logo bit-nav-item .bwi-shield {
   @extend %vw-hide;
 }
-/* Hide Device Login Protection button on user settings page */
+/* 隐藏用户设置页中的「设备登录保护」按钮 */
 app-user-layout app-danger-zone button:nth-child(1) {
   @extend %vw-hide;
 }
 
-/* Hide unsupported Forwarding email alias options */
+/* 隐藏不支持的邮箱别名转发选项 */
 ng-dropdown-panel div.ng-dropdown-panel-items div:has(> [title="Firefox Relay"]) {
   @extend %vw-hide;
 }
 ng-dropdown-panel div.ng-dropdown-panel-items div:has(> [title="DuckDuckGo"]) {
   @extend %vw-hide;
 }
-/**** END Static Vaultwarden Changes ****/
-/**** START Dynamic Vaultwarden Changes ****/
+/**** END 静态 Vaultwarden 修改 ****/
+/**** START 动态 Vaultwarden 修改 ****/
 {{#if signup_disabled}}
-/* From web vault 2025.1.2 and onwards, the signup button is hidden
-  when signups are disabled as the web vault checks the /api/config endpoint.
-  Note that the clients tend to cache this endpoint for about 1 hour, so it might
-  take a while for the change to take effect. To avoid the button appearing
-  when it shouldn't, we'll keep this style in place for a couple of versions */
-/* Hide the register link on the login screen */
+/* 自 web 密码库 2025.1.2 起，当禁用注册时，注册按钮会被隐藏，
+  因为 web 密码库会检查 /api/config 接口。
+  请注意，客户端通常会将该接口缓存约 1 小时，因此更改可能需要
+  一些时间才能生效。为了避免按钮在不应该显示时短暂出现，
+  我们将这个样式在几个版本内保留。*/
+/* 隐藏登录页面的注册链接 */
 {{#if (webver "<2025.3.0")}}
 app-login form div + div + div + div + hr,
 app-login form div + div + div + div + hr + p {
@@ -167,49 +167,49 @@ app-root a[routerlink="/signup"] {
 {{/if}}
 
 {{#if remember_2fa_disabled}}
-/* Hide checkbox to remember 2FA token for 30 days */
+/* 隐藏「记住两步登录令牌 30 天」的复选框 */
 app-two-factor-auth > form > bit-form-control {
   @extend %vw-hide;
 }
 {{/if}}
 
 {{#unless mail_2fa_enabled}}
-/* Hide `Email` 2FA if mail is not enabled */
+/* 在未启用邮件两步登录时隐藏「邮箱」两步登录 */
 .providers-2fa-1 {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless yubico_enabled}}
-/* Hide `YubiKey OTP security key` 2FA if it is not enabled */
+/* 在未启用 YubiKey 时隐藏「YubiKey OTP 安全密钥」两步登录 */
 .providers-2fa-3 {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless webauthn_2fa_supported}}
-/* Hide `Passkey` 2FA if it is not supported */
+/* 在不支持 Passkey 时隐藏「Passkey」两步登录 */
 .providers-2fa-7 {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless emergency_access_allowed}}
-/* Hide Emergency Access if not allowed */
+/* 不允许时隐藏紧急访问 */
 bit-nav-item[route="settings/emergency-access"] {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless sends_allowed}}
-/* Hide Sends if not allowed */
+/* 不允许时隐藏 Send */
 bit-nav-item[route="sends"] {
   @extend %vw-hide;
 }
 {{/unless}}
 
 {{#unless password_hints_allowed}}
-/* Hide password hints if not allowed */
+/* 不允许时隐藏密码提示 */
 a[routerlink="/hint"],
 {{#if (webver "<2025.12.2")}}
 app-change-password > form > .form-group:nth-child(5),
@@ -220,8 +220,8 @@ auth-input-password > form > bit-form-field:nth-child(4) {
   @extend %vw-hide;
 }
 {{/unless}}
-/**** End Dynamic Vaultwarden Changes ****/
-/**** Include a special user stylesheet for custom changes ****/
+/**** END 动态 Vaultwarden 修改 ****/
+/**** 引入用户自定义样式表以支持进一步的修改 ****/
 {{#if load_user_scss}}
 {{> scss/user.vaultwarden.scss }}
 {{/if}}
